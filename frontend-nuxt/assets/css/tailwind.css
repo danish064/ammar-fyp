@@ -1,0 +1,7 @@
+@import "./main.css";
+
+@layer base {
+  /* body {
+    @apply w-full h-full;
+  } */
+}
