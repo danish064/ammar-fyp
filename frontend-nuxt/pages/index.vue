@@ -48,26 +48,6 @@
           </div>
         </div>
       </div>
-   
-      <!-- <div class="flex flex-row justify-center mt-8">
-        <div id="log_card">
-          <h4>Logs</h4>
-          <div id="content">
-            <div class="row sticky">
-              <div class="font-bold">Source IP</div>
-              <div class="font-bold">Dest IP</div>
-              <div class="font-bold">Payload</div>
-              <div class="font-bold">Attack</div>
-            </div>
-            <div v-for="log in logs" class="row">
-              <div>{{ log.source_IP }}</div>
-              <div>{{ log.dest_IP }}</div>
-              <div>{{ log.payload }}</div>
-              <div>{{ log.attack }}</div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
     <AppFooter />
   </div>

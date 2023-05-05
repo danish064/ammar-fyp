@@ -2,17 +2,9 @@
   <div class="h-full bg-[#272d37] flex flex-col box-border">
     <AppHeader />
     <div class="px-40 mt-16 overflow-y-auto" style="height: calc(100% - 160px)">
+      
       <div class="flex flex-row justify-center mt-8">
-        <!-- <div id="stats-card">
-            <h4>Hunt Score Sumary</h4>
-          </div>
-          <div id="stats-card">
-            <h4>Insights</h4>
-          </div>
-          <div id="stats-card">
-            <h4>Event Status</h4>
-          </div> -->
-        <div id="log_card">
+        <div class="log_card">
           <h4>Logs</h4>
           <div id="content">
             <div class="row sticky">
@@ -30,6 +22,31 @@
           </div>
         </div>
       </div>
+      <div class="flex flex-row justify-center mt-8">
+        <div class="log_card">
+          <h4>AI Logs</h4>
+          <div id="content">
+            <div class="row sticky">
+              <div class="font-bold">AdaBoostClassifier</div>
+              <div class="font-bold">DecisionTreeClassifier</div>
+              <div class="font-bold">GaussianNB</div>
+              <div class="font-bold">LogisticRegression</div>
+              <div class="font-bold">XGBClassifier</div>
+              <div class="font-bold">total</div>
+              <div class="font-bold">attack</div>
+            </div>
+            <div v-for="log in ailogs" class="row">
+              <div>{{ log.AdaBoostClassifier }}</div>
+              <div>{{ log.DecisionTreeClassifier }}</div>
+              <div>{{ log.GaussianNB }}</div>
+              <div>{{ log.LogisticRegression }}</div>
+              <div>{{ log.XGBClassifier }}</div>
+              <div>{{ log.total }}</div>
+              <div>{{ log.attack }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <AppFooter />
   </div>
@@ -38,14 +55,14 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useStatStore } from "../stores/statsStore";
-let { logs } = storeToRefs(useStatStore());
+let { logs, ailogs } = storeToRefs(useStatStore());
 </script>
 
 <style lang="postcss" scoped>
-#log_card {
+.log_card {
   background-color: #313844;
   height: 400px;
-  width: 1024px;
+  width: 90%;
   display: inline-block;
   border-radius: 3px;
   padding: 20px;

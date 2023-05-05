@@ -40,11 +40,27 @@ const packetStats = {
   ipv6_packets: 0,
   other_packets: 0,
 };
+const aiLogs = {
+  LogisticRegression: 0,
+  AdaBoostClassifier: 0,
+  GaussianNB: 0,
+  XGBClassifier: 0,
+  DecisionTreeClassifier: 0,
+  total: 0,
+  attack: "",
+};
 // defining an endpoint to return all ads
 app.get("/api/stats/basic", (req, res) => {
   connection.query("SELECT * FROM atcount", (err, results, fields) => {
     if (err) throw err;
     console.log(results);
+    res.send(results);
+  });
+});
+app.get("/api/stats/logs", (req, res) => {
+  connection.query("SELECT * FROM logs", (err, results, fields) => {
+    if (err) throw err;
+    // console.log(results);
     res.send(results);
   });
 });
@@ -55,10 +71,10 @@ app.get("/api/stats/packets", (req, res) => {
     res.send(results);
   });
 });
-app.get("/api/stats/logs", (req, res) => {
-  connection.query("SELECT * FROM logs", (err, results, fields) => {
+app.get("/api/stats/ailogs", (req, res) => {
+  connection.query("SELECT * FROM ailogs", (err, results, fields) => {
     if (err) throw err;
-    // console.log(results);
+    console.log(results);
     res.send(results);
   });
 });

@@ -15,6 +15,7 @@ export const useStatStore = defineStore("stats", {
       ipv6: 0,
       unknown: 0,
     },
+    ailogs: [],
     logs: [],
     stopStats: null,
     pollingInterval: 1000,
@@ -65,12 +66,27 @@ export const useStatStore = defineStore("stats", {
         this.logs = data.value;
       }
     },
+    async getAILogs() {
+      // Get basic stats from API
+      const fetchOptions = {
+        method: "GET",
+      };
+      let { data, error } = await useFetch(
+        "http://localhost:3001/api/stats/ailogs/",
+        fetchOptions
+      );
+      if (data.value) {
+        this.ailogs = data.value;
+        console.log(this.ailogs);
+      }
+    },
     startGettingStats() {
       // Start getting stats from API
       this.stopStats = setInterval(() => {
         console.log("Set interval called");
         this.getBasicStats();
         this.getLogs();
+        this.getAILogs();
         this.getPacketStats();
       }, this.pollingInterval);
     },
