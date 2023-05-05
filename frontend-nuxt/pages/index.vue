@@ -2,9 +2,8 @@
   <div class="h-full bg-[#272d37] flex flex-col box-border">
     <AppHeader />
     <div class="px-40 mt-16 overflow-y-auto" style="height: calc(100% - 160px)">
-      <!-- <h3 class="text-white">Horizontal Layout</h3> -->
-      <div class="flex flex-row justify-evenly">
-        <div id="attack-card">
+      <div class="mb-10 flex flex-row justify-evenly">
+        <div class="attack-card">
           <h4>New Incidents</h4>
           <div>
             <div id="img_wrapper">
@@ -18,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div id="attack-card">
+        <div class="attack-card">
           <h4>Network Attacks</h4>
           <div>
             <div id="img_wrapper">
@@ -33,7 +32,7 @@
             </div>
           </div>
         </div>
-        <div id="attack-card">
+        <div class="attack-card">
           <h4>Web Attacks</h4>
           <div>
             <div id="img_wrapper">
@@ -48,32 +47,9 @@
             </div>
           </div>
         </div>
-        <!-- <div id="attack-card">
-          <h4>Other Attacks</h4>
-          <div>
-            <div id="img_wrapper">
-              <img src="/images/4.png" alt="Other Attacks" />
-            </div>
-
-            <div id="text-box">
-              <p id="num">
-                <strong>{{ other_attacks }}</strong>
-              </p>
-              <p id="my-text">Attacks Today</p>
-            </div>
-          </div>
-        </div> -->
       </div>
-      <div class="flex flex-row justify-center mt-8">
-        <!-- <div id="stats-card">
-          <h4>Hunt Score Sumary</h4>
-        </div>
-        <div id="stats-card">
-          <h4>Insights</h4>
-        </div>
-        <div id="stats-card">
-          <h4>Event Status</h4>
-        </div> -->
+   
+      <!-- <div class="flex flex-row justify-center mt-8">
         <div id="log_card">
           <h4>Logs</h4>
           <div id="content">
@@ -91,7 +67,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <AppFooter />
   </div>
@@ -100,23 +76,15 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useStatStore } from "../stores/statsStore";
-let { new_incidences, network_attacks, web_attacks, logs } = storeToRefs(
-  useStatStore()
-);
-// const statStore = useStatStore();
-// statStore.getBasicStats();
-// const { startGettingStats } = useStatStore();
-// startGettingStats();
-// const stopRequests = setInterval(() => {
-//   statStore.getBasicStats();
-// }, 5000);
-// console.log(name.value);
+let { new_incidences, network_attacks, web_attacks, logs, packets } =
+  storeToRefs(useStatStore());
 </script>
 
-<style lang="postcss">
-#attack-card {
+<style lang="postcss" scoped>
+.attack-card {
   width: 300px;
-  height: 200px;
+  min-width: 300px;
+  min-height: 200px;
   background-color: #313844;
   border-radius: 10px;
   /* margin: 10px; */
@@ -186,7 +154,7 @@ let { new_incidences, network_attacks, web_attacks, logs } = storeToRefs(
 #log_card {
   background-color: #313844;
   height: 400px;
-  width: 1024px;
+  width: 100%;
   display: inline-block;
   border-radius: 3px;
   padding: 20px;

@@ -31,15 +31,25 @@ const basicStats = {
   web_attacks: 0,
   other_attacks: 0,
 };
-const incereaseBasicStats = () => {
-  basicStats.new_incidences++;
-  basicStats.network_attacks++;
-  basicStats.web_attacks++;
-  basicStats.other_attacks++;
+const packetStats = {
+  tcp_packets: 0,
+  udp_packets: 0,
+  icmp_packets: 0,
+  http_packets: 0,
+  https_packets: 0,
+  ipv6_packets: 0,
+  other_packets: 0,
 };
 // defining an endpoint to return all ads
 app.get("/api/stats/basic", (req, res) => {
   connection.query("SELECT * FROM atcount", (err, results, fields) => {
+    if (err) throw err;
+    console.log(results);
+    res.send(results);
+  });
+});
+app.get("/api/stats/packets", (req, res) => {
+  connection.query("SELECT * FROM pcount", (err, results, fields) => {
     if (err) throw err;
     console.log(results);
     res.send(results);
